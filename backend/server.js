@@ -15,7 +15,7 @@ const app = express();
 app.set('trust proxy', 1);
 
 const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || 'https://mgnrega-dashboard-frontend.vercel.app/';
-app.use(cors({ origin: FRONTEND_ORIGIN }));
+app.use(cors());
 
 app.use(helmet());
 app.use(compression());
