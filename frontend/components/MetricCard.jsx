@@ -12,7 +12,7 @@ export default function MetricCard({ icon, value, label, hindiLabel, trend, colo
       </div>
       <div className="text-4xl font-bold text-gray-900 mb-2">{formatNumber(value)}</div>
       <div className="text-gray-600 text-sm">{label}</div>
-      <div className="text-gray-500 text-xs mt-1">{hindiLabel}</div>
+      {hindiLabel ? <div className="text-gray-500 text-xs mt-1">{hindiLabel}</div> : null}
     </div>
   )
 }

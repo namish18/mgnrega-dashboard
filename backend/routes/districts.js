@@ -184,4 +184,19 @@ router.get('/search', cacheFor(300), async (req, res) => {
   }
 });
 
+// GET /api/districts/states
+router.get('/states', cacheFor(600), async (req, res) => {
+  try {
+    let states = await DistrictMetadata.distinct('state_name');
+    if (!states || states.length === 0) {
+      states = await DistrictSnapshot.distinct('state_name');
+    }
+    states = (states || []).filter(Boolean).sort((a,b)=> String(a).localeCompare(String(b)));
+    res.json(states);
+  } catch (e) {
+    res.status(500).json({ error: 'states_failed' });
+  }
+});
+
 module.exports = router;
+ 

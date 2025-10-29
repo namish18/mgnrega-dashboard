@@ -1,16 +1,19 @@
 "use client"
+import { useLocale } from '../store/useLocale'
+import { t } from '../lib/i18n'
 
 export default function ComparisonTable({ top=[], peers=[], highlightCode }){
+  const { lang } = useLocale()
   return (
     <div className="bg-white rounded-xl shadow p-4 overflow-x-auto">
-      <div className="font-bold mb-2">अन्य जिलों से तुलना करें</div>
+      <div className="font-bold mb-2">{t('compare.title', lang)}</div>
       <table className="min-w-full text-sm">
         <thead>
           <tr className="text-left text-gray-600">
-            <th className="p-2">Rank</th>
-            <th className="p-2">District</th>
-            <th className="p-2">Households</th>
-            <th className="p-2">Vs You</th>
+            <th className="p-2">{t('table.rank', lang)}</th>
+            <th className="p-2">{t('table.district', lang)}</th>
+            <th className="p-2">{t('table.households', lang)}</th>
+            <th className="p-2">{t('table.vsYou', lang)}</th>
           </tr>
         </thead>
         <tbody>
@@ -22,7 +25,7 @@ export default function ComparisonTable({ top=[], peers=[], highlightCode }){
               <td className="p-2">—</td>
             </tr>
           ))}
-          {peers.length>0 && <tr><td colSpan={4} className="p-2 font-semibold">Similar Districts</td></tr>}
+          {peers.length>0 && <tr><td colSpan={4} className="p-2 font-semibold">{t('table.similar', lang)}</td></tr>}
           {peers.map((p)=> (
             <tr key={p.district_code}>
               <td className="p-2">—</td>

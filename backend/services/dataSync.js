@@ -4,7 +4,7 @@ const DistrictSnapshot = require('../models/DistrictSnapshot');
 const SyncLog = require('../models/SyncLog');
 
 const API_URL = 'https://api.data.gov.in/resource/ee03643a-ee4c-48c2-ac30-9f2ff26ab722';
-const STATE = process.env.STATE_FILTER || 'ODISHA';
+const STATE = (process.env.STATE_FILTER || 'ALL').toUpperCase();
 const API_KEY = process.env.DATA_GOV_API_KEY;
 
 function sleep(ms) { return new Promise((r) => setTimeout(r, ms)); }
@@ -44,7 +44,8 @@ async function runSyncOnce() {
     let page = 0;
 
     while (true) {
-      const url = `${API_URL}?api-key=${API_KEY}&format=json&limit=${limit}&offset=${offset}&filters[state_name]=${encodeURIComponent(STATE)}`;
+      const stateFilterParam = STATE && STATE !== 'ALL' ? `&filters[state_name]=${encodeURIComponent(STATE)}` : '';
+      const url = `${API_URL}?api-key=${API_KEY}&format=json&limit=${limit}&offset=${offset}${stateFilterParam}`;
 
       let response;
       let attempts = 0;

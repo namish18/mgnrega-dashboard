@@ -1,10 +1,13 @@
 "use client"
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, BarChart, Bar, Legend } from 'recharts'
+import { useLocale } from '../store/useLocale'
+import { t } from '../lib/i18n'
 
 export function LineTrend({ data, lineKey='value', color='#2563eb' }){
+  const { lang } = useLocale()
   return (
     <div className="bg-white rounded-xl shadow p-4">
-      <div className="font-bold mb-2">पिछले 12 महीने</div>
+      <div className="font-bold mb-2">{t('charts.last12Months', lang)}</div>
       <ResponsiveContainer width="100%" height={280}>
         <LineChart data={data}>
           <defs>
@@ -25,9 +28,10 @@ export function LineTrend({ data, lineKey='value', color='#2563eb' }){
 }
 
 export function BarCompare({ data, barKey='value', color='#10b981' }){
+  const { lang } = useLocale()
   return (
     <div className="bg-white rounded-xl shadow p-4">
-      <div className="font-bold mb-2">मासिक व्यय तुलना</div>
+      <div className="font-bold mb-2">{t('charts.monthlyExpenditure', lang)}</div>
       <ResponsiveContainer width="100%" height={280}>
         <BarChart data={data}>
           <CartesianGrid strokeDasharray="3 3" />

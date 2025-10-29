@@ -10,3 +10,4 @@ export async function searchDistricts(state){ const {data}=await client.get(`/di
 export async function systemStatus(){ const {data}=await client.get(`/system/status`); return data }
 export async function detectByIp(){ const {data}=await client.get(`/location/detect-by-ip`); return data }
 export async function reverseGeocode(latitude, longitude){ const {data}=await client.post(`/location/reverse-geocode`, { latitude, longitude }); return data }
+export async function getStates(){ const {data}=await client.get(`/districts/states`); return data }

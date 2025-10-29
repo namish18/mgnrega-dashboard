@@ -1,18 +1,23 @@
 "use client"
-import { Users, CalendarCheck2, IndianRupee, Building2 } from 'lucide-react'
 import LocationDetector from '../components/LocationDetector'
 import DistrictSelector from '../components/DistrictSelector'
+import LanguageToggle from '../components/LanguageToggle'
+import { useLocale } from '../store/useLocale'
+import { t } from '../lib/i18n'
 
 export default function Home() {
+  const { lang } = useLocale()
   return (
     <main className="max-w-6xl mx-auto p-4 md:p-8 space-y-6">
+      <div className="flex justify-end">
+        <LanguageToggle />
+      </div>
       <section className="bg-white rounded-2xl shadow p-6 md:p-10 text-center">
-        <h1 className="text-3xl md:text-5xl font-extrabold text-primary mb-3">अपने जिले का प्रदर्शन देखें</h1>
-        <p className="text-gray-700 mb-6">See Your District's Performance</p>
+        <h1 className="text-3xl md:text-5xl font-extrabold text-primary mb-3">{t('home.title', lang)}</h1>
         <div className="flex justify-center mb-6">
           <LocationDetector />
         </div>
-        <div className="text-gray-600 mb-3">या मैन्युअली चुनें</div>
+        <div className="text-gray-600 mb-3">{t('home.orSelect', lang)}</div>
         <DistrictSelector />
       </section>
     </main>
