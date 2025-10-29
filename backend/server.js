@@ -14,7 +14,7 @@ const { startDataSyncScheduler } = require('./services/dataSync');
 const app = express();
 app.set('trust proxy', 1);
 
-const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || 'http://localhost:3000';
+const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || 'https://mgnrega-dashboard-frontend.vercel.app/';
 app.use(cors({
   origin: FRONTEND_ORIGIN.split(','),
   credentials: true
